@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Download and verify pinned ZeroClaw
+        run: |
+          mkdir -p .ci-bin
+          curl -fL \
+            https://github.com/zeroclaw-labs/zeroclaw/releases/download/v0.8.3/zeroclaw-x86_64-unknown-linux-gnu.tar.gz \
+            -o .ci-bin/zeroclaw.tar.gz
+          printf '%s  %s\n' \
+            '662abfa20afc5790538e69aebc1be60e188d34ba64f96fd81505bbcdd8edce44' \
+            '.ci-bin/zeroclaw.tar.gz' | sha256sum --check
+          tar -xzf .ci-bin/zeroclaw.tar.gz -C .ci-bin zeroclaw
+          .ci-bin/zeroclaw --version
+
+      - name: Audit skill
+        run: .ci-bin/zeroclaw skills audit ./skills/bounty-sentinel
+
+      - name: Validate SOP and graph
+        run: |
+          mkdir -p demo-config
+          cp config.example.toml demo-config/config.toml
+          .ci-bin/zeroclaw sop validate --config-dir demo-config
+          .ci-bin/zeroclaw sop graph bounty-digest --config-dir demo-config
+
+      - name: Test safety contract
+        run: python3 -m unittest -v tests.test_contract

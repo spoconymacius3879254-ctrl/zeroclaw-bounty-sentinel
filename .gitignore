@@ -1,4 +1,5 @@
 .cache/
+.ci-bin/
 tools/
 demo-config/
 evidence/runtime/

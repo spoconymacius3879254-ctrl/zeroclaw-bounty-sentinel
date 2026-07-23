@@ -1,5 +1,7 @@
 # Bounty Sentinel for ZeroClaw
 
+[![CI](https://github.com/spoconymacius3879254-ctrl/zeroclaw-bounty-sentinel/actions/workflows/ci.yml/badge.svg)](https://github.com/spoconymacius3879254-ctrl/zeroclaw-bounty-sentinel/actions/workflows/ci.yml)
+
 Bounty Sentinel is a custody-free ZeroClaw use case for builders who earn from
 public crypto bounties. It watches the state that matters after the code is
 written: maintainer review, clean-room CI, and the public Solana balance needed
