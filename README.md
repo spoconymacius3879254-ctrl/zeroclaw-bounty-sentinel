@@ -51,12 +51,12 @@ zeroclaw sop validate --config-dir demo-config
 python3 -m unittest -v tests.test_contract
 ```
 
-For a real run, use `zeroclaw quickstart` to create a private configuration,
-install the skill into a bundle loaded by the chosen agent, enable the SOP with
-this repository's `sops` directory, and configure one allowlisted Discord or
-Telegram bot. Do not put provider or bot credentials in this repository.
+For a real run, follow the command-verified [live runbook](docs/RUNBOOK.md) to
+create a private supervised agent, install the skill, enable the SOP, and bind
+one restricted Discord bot. Do not put provider or bot credentials in this
+repository.
 
-The exact human-only setup and recording flow is in [the demo script](docs/DEMO_SCRIPT.md).
+The recording flow is in [the demo script](docs/DEMO_SCRIPT.md).
 
 ## What this demonstrates
 

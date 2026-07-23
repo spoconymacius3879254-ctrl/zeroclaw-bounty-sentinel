@@ -2,6 +2,7 @@
 .ci-bin/
 tools/
 demo-config/
+.zeroclaw-demo/
 evidence/runtime/
 .env
 *.log

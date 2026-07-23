@@ -6,6 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = (ROOT / "skills" / "bounty-sentinel" / "SKILL.md").read_text()
 SOP = (ROOT / "sops" / "bounty-digest" / "SOP.md").read_text()
+RUNBOOK = (ROOT / "docs" / "RUNBOOK.md").read_text()
 
 
 class ContractTests(unittest.TestCase):
@@ -24,6 +25,20 @@ class ContractTests(unittest.TestCase):
     def test_public_solana_address_is_stable(self):
         self.assertIn("Edk1vBTRxCeqxYmytWJcBYCxBxHsh4jXFNrVChdyLxc", SKILL)
         self.assertIn("2.3 Devnet SOL", SKILL)
+
+    def test_live_runbook_preserves_t0_boundary(self):
+        self.assertIn("'[\"http_request\"]'", RUNBOOK)
+        self.assertIn("mention_only true", RUNBOOK)
+        self.assertIn("security status --agent bounty_sentinel", RUNBOOK)
+        self.assertNotRegex(
+            RUNBOOK,
+            r"(?m)^\./tools/zeroclaw daemon .*--allow-degraded-security",
+        )
+
+    def test_live_runbook_never_passes_real_secrets_as_arguments(self):
+        self.assertIn("bot_token \\\n  --config-dir", RUNBOOK)
+        self.assertNotRegex(RUNBOOK, r"bot_token\s+['\"]")
+        self.assertNotIn("MEMANTO_API_KEY", RUNBOOK)
 
 
 if __name__ == "__main__":
