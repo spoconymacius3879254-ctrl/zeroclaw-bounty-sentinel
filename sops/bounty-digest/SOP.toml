@@ -1,0 +1,13 @@
+[sop]
+name = "bounty-digest"
+description = "Read-only GitHub and Solana deployment-readiness digest"
+version = "0.1.0"
+max_concurrent = 1
+admission_policy = "coalesce"
+
+[[triggers]]
+type = "manual"
+
+[[triggers]]
+type = "cron"
+expression = "0 */6 * * *"

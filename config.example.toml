@@ -1,0 +1,22 @@
+schema_version = 3
+
+[memory]
+search_mode = "bm25"
+
+[sop]
+sops_dir = "sops"
+default_execution_mode = "supervised"
+maintenance_interval_secs = 60
+step_scope_enforce = true
+untrusted_input_guard = "block"
+untrusted_outbound_redact = true
+
+[http_request]
+enabled = true
+allowed_domains = ["api.github.com", "api.devnet.solana.com"]
+allow_private_hosts = false
+max_response_size = 262144
+timeout_secs = 20
+
+# Complete provider, agent, skill-bundle, and channel setup with ZeroClaw's
+# interactive encrypted configuration surfaces. Never add credentials here.
