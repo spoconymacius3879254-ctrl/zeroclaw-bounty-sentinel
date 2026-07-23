@@ -24,7 +24,11 @@ fail-closed refusal.
 
 ## Reproduce
 
-Repository: pending publication
+Repository:
+<https://github.com/spoconymacius3879254-ctrl/zeroclaw-bounty-sentinel>
+
+Clean-room CI:
+<https://github.com/spoconymacius3879254-ctrl/zeroclaw-bounty-sentinel/actions/runs/29973198710>
 
 Pin ZeroClaw v0.8.3, verify the documented official digest, audit the skill,
 validate the SOP, configure a private model login and restricted chat bot, then
